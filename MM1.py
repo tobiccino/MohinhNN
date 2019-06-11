@@ -127,9 +127,9 @@ def plot_simulation_delay_time_per_job(jobs, arrival_rate, sumarize):
     print("Average delay per job: " + str(simulation_delay_avg))
     simulation_data_delay_averages = [job_ids, [simulation_delay_avg for job_id in jobs]]
 
-    theoretical_data = [job_ids, [1 / ((1 / JOB_SIZE) - arrival_rate) for job_id in jobs]]
+    theoretical_data = [job_ids, [1 / (JOB_SIZE - arrival_rate) for job_id in jobs]]
 
-    plt.figure(" Figure for lambda=" + str(arrival_rate))
+    plt.figure(" Figure for lambda = " + str(arrival_rate))
     this_axis = plt.subplot()
     this_axis.step(simulation_data[0], simulation_data[1], label='Simulation delay time per job id')
     this_axis.step(simulation_data_delay_averages[0], simulation_data_delay_averages[1], label='Simulation E[T]')
@@ -139,7 +139,7 @@ def plot_simulation_delay_time_per_job(jobs, arrival_rate, sumarize):
     this_axis.set_title(
         "Delay time M/M/1 λ=" + str(arrival_rate) + " Simulation time: " + str(TOTAL_SIMULATION_TIME) + " secs")
 
-    sumarize[arrival_rate] = [simulation_delay_avg, 1 / ((1 / JOB_SIZE) - arrival_rate)]
+    sumarize[arrival_rate] = [simulation_delay_avg, 1 / (JOB_SIZE- arrival_rate)]
 
 
 if __name__ == '__main__':
